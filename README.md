@@ -29,6 +29,29 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Database Setup
+
+This project uses Prisma with PostgreSQL for production. For local development, SQLite is used.
+
+### Local Development
+The project will automatically use SQLite with the local database file.
+
+### Production Deployment
+For production (Vercel), you need to:
+
+1. **Set up a PostgreSQL database** (e.g., using [Neon](https://neon.tech), [Supabase](https://supabase.com), or [Railway](https://railway.app))
+
+2. **Set environment variables in Vercel:**
+   ```
+   DATABASE_URL="postgresql://username:password@host:port/database"
+   ADMIN_TOKEN="your-admin-token"
+   ```
+
+3. **Run database migrations:**
+   ```bash
+   npx prisma db push
+   ```
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
