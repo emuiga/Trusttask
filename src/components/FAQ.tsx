@@ -39,24 +39,19 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-24 bg-[#120932] relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }} />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#f0f4ff] to-[#e8f2ff]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl lg:text-4xl font-light text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-base lg:text-lg text-white/70 font-light">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 px-4 sm:px-0">
             Everything you need to know about TrustTask
           </p>
         </motion.div>
@@ -67,17 +62,17 @@ export function FAQ() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <Accordion type="single" collapsible className="w-full space-y-4">
+          <Accordion type="single" collapsible className="w-full space-y-2 sm:space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="bg-[#34205e]/80 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+                className="bg-white rounded-lg sm:rounded-xl border border-gray-200 overflow-hidden shadow-sm"
               >
-                <AccordionTrigger className="text-left text-base font-medium text-white hover:text-white/80 px-6 py-4 transition-colors">
+                <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-gray-900 hover:text-[#451aea] px-4 sm:px-6 py-3 sm:py-4 transition-colors">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-white/70 text-sm leading-relaxed px-6 pb-4">
+                <AccordionContent className="text-gray-700 text-xs sm:text-sm leading-relaxed px-4 sm:px-6 pb-3 sm:pb-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -87,22 +82,22 @@ export function FAQ() {
 
         {/* Additional CTA */}
         <motion.div 
-          className="text-center mt-16"
+          className="text-center mt-8 sm:mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-[#34205e]/80 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-            <p className="text-white/70 mb-6 text-sm">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200 shadow-sm">
+            <p className="text-gray-700 mb-4 sm:mb-6 text-sm sm:text-base">
               Still have questions? We&apos;re here to help.
             </p>
             <Button 
-              onClick={() => window.open('mailto:trusttaskpilot@gmail.com', '_blank')}
-              className="bg-[#00ffb0] text-[#18181b] px-6 py-3 rounded-full font-medium transition-all duration-200 text-sm"
+              onClick={() => window.open('mailto:support@trusttask.net', '_blank')}
+              className="bg-[#4b7aec] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold transition-all duration-200 text-sm sm:text-base hover:bg-[#451aea] hover:shadow-lg"
             >
-              <Mail className="mr-2 h-4 w-4" />
-              Contact our support team
+              <Mail className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+              Contact support 
             </Button>
           </div>
         </motion.div>

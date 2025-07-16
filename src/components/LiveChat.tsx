@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, X, Send, Minimize2, ChevronDown, Home, MessageSquare } from "lucide-react";
+import { MessageCircle, X, Send, ChevronDown, Home, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
@@ -10,8 +10,6 @@ interface Message {
   sender: 'user' | 'support';
   timestamp: string;
 }
-
-
 
 const faqQuestions = [
   {
@@ -172,7 +170,7 @@ export function LiveChat() {
         {!isOpen && (
           <motion.button
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 bg-[#00ffb0] text-[#18181b] p-3 md:p-3 rounded-full transition-all duration-200 z-50 hover:bg-[#00e6a0] shadow-lg"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 bg-[#76b5c5] text-[#21130d] p-3 md:p-3 rounded-full transition-all duration-200 z-50 hover:bg-[#abdbe3] shadow-lg"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
@@ -195,26 +193,21 @@ export function LiveChat() {
             transition={{ duration: 0.3 }}
           >
             {/* Header */}
-            <div className="bg-[#120932] text-white p-3 md:p-4 flex justify-between items-center">
+            <div className="bg-[#063970] text-[#eeeee4] p-3 md:p-4 flex justify-between items-center">
               <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-6 h-6 md:w-8 md:h-8 bg-[#00ffb0] rounded flex items-center justify-center">
-                  <span className="text-[#18181b] font-bold text-xs md:text-sm">T</span>
+                <div className="w-6 h-6 md:w-8 md:h-8 bg-[#76b5c5] rounded flex items-center justify-center">
+                  <span className="text-[#21130d] font-bold text-xs md:text-sm">T</span>
                 </div>
                 <div>
                   <h3 className="font-medium text-xs md:text-sm">TrustTask Support</h3>
-                  <p className="text-xs text-white/70">We&apos;re here to help!</p>
+                  <p className="text-xs text-[#abdbe3]">We&apos;re here to help!</p>
                 </div>
               </div>
               <div className="flex space-x-2">
-                <button
-                  onClick={() => setIsMinimized(!isMinimized)}
-                  className="text-white/70 hover:text-white transition-colors p-1"
-                >
-                  <Minimize2 className="h-4 w-4" />
-                </button>
+                
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-white/70 hover:text-white transition-colors p-1"
+                  className="text-[#abdbe3] hover:text-[#eeeee4] transition-colors p-1"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -237,7 +230,7 @@ export function LiveChat() {
                       onClick={() => setActiveTab("home")}
                       className={`flex-1 py-2 md:py-3 px-3 md:px-4 text-xs md:text-sm font-medium transition-colors ${
                         activeTab === "home" 
-                          ? "text-[#00ffb0] border-b-2 border-[#00ffb0]" 
+                          ? "text-[#76b5c5] border-b-2 border-[#76b5c5]" 
                           : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
@@ -250,7 +243,7 @@ export function LiveChat() {
                       onClick={() => setActiveTab("messages")}
                       className={`flex-1 py-2 md:py-3 px-3 md:px-4 text-xs md:text-sm font-medium transition-colors ${
                         activeTab === "messages" 
-                          ? "text-[#00ffb0] border-b-2 border-[#00ffb0]" 
+                          ? "text-[#76b5c5] border-b-2 border-[#76b5c5]" 
                           : "text-gray-500 hover:text-gray-700"
                       }`}
                     >
@@ -261,14 +254,14 @@ export function LiveChat() {
                     </button>
                   </div>
 
-                  {/* Tab Content */}
-                  <div className="flex-1 overflow-y-auto">
+                  {/* Content Area */}
+                  <div className="flex-1 flex flex-col">
                     {activeTab === "home" ? (
-                      <div className="p-3 md:p-4 space-y-3 md:space-y-4">
+                      <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">
                         {/* Welcome Message */}
                         <div className="flex items-start space-x-2 md:space-x-3">
-                          <div className="w-6 h-6 md:w-8 md:h-8 bg-[#00ffb0] rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-[#18181b] font-bold text-xs">T</span>
+                          <div className="w-6 h-6 md:w-8 md:h-8 bg-[#76b5c5] rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-[#21130d] font-bold text-xs">T</span>
                           </div>
                           <div className="bg-gray-100 rounded-2xl p-2 md:p-3 max-w-[calc(100%-3rem)] md:max-w-xs">
                             <p className="text-xs md:text-sm text-gray-800">
@@ -294,90 +287,92 @@ export function LiveChat() {
                         </div>
                       </div>
                     ) : (
-                      <div className="p-3 md:p-4 space-y-3 md:space-y-4">
-                        {/* Chat Messages */}
-                        {messages.length === 0 ? (
-                          <div className="text-center text-gray-500 py-8">
-                            <MessageSquare className="h-6 w-6 md:h-8 md:w-8 mx-auto mb-2 opacity-50" />
-                            <p className="text-xs md:text-sm">No messages yet</p>
-                            <p className="text-xs">Start a conversation to see messages here</p>
-                          </div>
-                        ) : (
-                          <>
-                            {messages.map((msg) => (
-                              <div
-                                key={msg.id}
-                                className={`flex items-start space-x-2 md:space-x-3 ${
-                                  msg.sender === 'user' ? 'justify-end' : ''
-                                }`}
-                              >
-                                {msg.sender === 'support' && (
-                                  <div className="w-6 h-6 md:w-8 md:h-8 bg-[#00ffb0] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span className="text-[#18181b] font-bold text-xs">T</span>
+                      <>
+                        {/* Messages Area */}
+                        <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">
+                          {messages.length === 0 ? (
+                            <div className="text-center text-gray-500 py-8">
+                              <MessageSquare className="h-6 w-6 md:h-8 md:w-8 mx-auto mb-2 opacity-50" />
+                              <p className="text-xs md:text-sm">No messages yet</p>
+                              <p className="text-xs">Start a conversation to see messages here</p>
+                            </div>
+                          ) : (
+                            <>
+                              {messages.map((msg) => (
+                                <div
+                                  key={msg.id}
+                                  className={`flex items-start space-x-2 md:space-x-3 ${
+                                    msg.sender === 'user' ? 'justify-end' : ''
+                                  }`}
+                                >
+                                  {msg.sender === 'support' && (
+                                    <div className="w-6 h-6 md:w-8 md:h-8 bg-[#76b5c5] rounded-full flex items-center justify-center flex-shrink-0">
+                                      <span className="text-[#21130d] font-bold text-xs">T</span>
+                                    </div>
+                                  )}
+                                  <div className={`max-w-[calc(100%-3rem)] md:max-w-xs ${msg.sender === 'user' ? 'order-2' : ''}`}>
+                                    <div className={`rounded-2xl p-2 md:p-3 ${
+                                      msg.sender === 'user' 
+                                        ? 'bg-[#76b5c5] text-[#21130d]' 
+                                        : 'bg-gray-100 text-gray-800'
+                                    }`}>
+                                      <p className="text-xs md:text-sm">{msg.text}</p>
+                                    </div>
+                                    <p className="text-xs text-gray-500 mt-1 ml-1">
+                                      {formatTime(msg.timestamp)}
+                                    </p>
                                   </div>
-                                )}
-                                <div className={`max-w-[calc(100%-3rem)] md:max-w-xs ${msg.sender === 'user' ? 'order-2' : ''}`}>
-                                  <div className={`rounded-2xl p-2 md:p-3 ${
-                                    msg.sender === 'user' 
-                                      ? 'bg-[#00ffb0] text-[#18181b]' 
-                                      : 'bg-gray-100 text-gray-800'
-                                  }`}>
-                                    <p className="text-xs md:text-sm">{msg.text}</p>
-                                  </div>
-                                  <p className="text-xs text-gray-500 mt-1 ml-1">
-                                    {formatTime(msg.timestamp)}
-                                  </p>
+                                  {msg.sender === 'user' && (
+                                    <div className="w-6 h-6 md:w-8 md:h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                                      <span className="text-gray-600 font-medium text-xs">U</span>
+                                    </div>
+                                  )}
                                 </div>
-                                {msg.sender === 'user' && (
-                                  <div className="w-6 h-6 md:w-8 md:h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span className="text-gray-600 font-medium text-xs">U</span>
+                              ))}
+                              
+                              {/* Typing Indicator */}
+                              {isTyping && (
+                                <div className="flex items-start space-x-2 md:space-x-3">
+                                  <div className="w-6 h-6 md:w-8 md:h-8 bg-[#76b5c5] rounded-full flex items-center justify-center flex-shrink-0">
+                                    <span className="text-[#21130d] font-bold text-xs">T</span>
                                   </div>
-                                )}
-                              </div>
-                            ))}
-                            
-                            {/* Typing Indicator */}
-                            {isTyping && (
-                              <div className="flex items-start space-x-2 md:space-x-3">
-                                <div className="w-6 h-6 md:w-8 md:h-8 bg-[#00ffb0] rounded-full flex items-center justify-center flex-shrink-0">
-                                  <span className="text-[#18181b] font-bold text-xs">T</span>
-                                </div>
-                                <div className="bg-gray-100 rounded-2xl p-2 md:p-3">
-                                  <div className="flex space-x-1">
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                  <div className="bg-gray-100 rounded-2xl p-2 md:p-3">
+                                    <div className="flex space-x-1">
+                                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                            <div ref={messagesEndRef} />
-                          </>
-                        )}
-                      </div>
+                              )}
+                              <div ref={messagesEndRef} />
+                            </>
+                          )}
+                        </div>
+
+                        {/* Message Input - ALWAYS VISIBLE IN MESSAGES TAB */}
+                        <div className="border-t border-gray-200 bg-white p-3 md:p-4">
+                          <form onSubmit={handleSubmit} className="flex space-x-2">
+                            <input
+                              type="text"
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}
+                              placeholder="Type your message..."
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#76b5c5] focus:border-transparent text-xs md:text-sm"
+                              disabled={isTyping}
+                            />
+                            <button
+                              type="submit"
+                              disabled={!message.trim() || isTyping}
+                              className="bg-[#76b5c5] hover:bg-[#abdbe3] disabled:bg-gray-300 disabled:cursor-not-allowed text-[#21130d] p-2 rounded-xl transition-all duration-200 flex items-center justify-center"
+                            >
+                              <Send className="h-4 w-4" />
+                            </button>
+                          </form>
+                        </div>
+                      </>
                     )}
                   </div>
-
-                  {/* Message Input */}
-                  <form onSubmit={handleSubmit} className="p-3 md:p-4 border-t border-gray-200">
-                    <div className="flex space-x-2">
-                      <input
-                        type="text"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Type your message..."
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#00ffb0] focus:border-transparent text-xs md:text-sm"
-                        disabled={isTyping}
-                      />
-                      <button
-                        type="submit"
-                        disabled={!message.trim() || isTyping}
-                        className="bg-[#00ffb0] hover:bg-[#00e6a0] disabled:bg-gray-300 disabled:cursor-not-allowed text-[#18181b] p-2 rounded-xl transition-all duration-200"
-                      >
-                        <Send className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </form>
                 </motion.div>
               )}
             </AnimatePresence>

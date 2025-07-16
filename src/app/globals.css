@@ -76,16 +76,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --color-bg-main: #2d1856;
-  --color-bg-darkest: #120932;
-  --color-bg-card: #34205e;
-  --color-bg-card-alt: #3a256b;
-  --color-text-main: #ffffff;
-  --color-text-secondary: #e0e0e0;
-  --color-text-muted: #a0a0a0;
-  --color-cta: #00ffb0;
-  --color-cta-hover: #00e6a0;
-  --color-border: #4b357a;
+  --color-bg-main: #1e81b0;
+  --color-bg-darkest: #063970;
+  --color-bg-card: #154c79;
+  --color-bg-card-alt: #76b5c5;
+  --color-text-main: #21130d;
+  --color-text-secondary: #873e23;
+  --color-text-muted: #873e23;
+  --color-cta: #76b5c5;
+  --color-cta-hover: #abdbe3;
+  --color-border: #abdbe3;
+  --color-accent-light: #eeeee4;
   --font-sans: 'Inter', 'Geist', 'Segoe UI', 'Arial', sans-serif;
 }
 
@@ -169,12 +170,15 @@ html {
 body {
   font-family: var(--font-sans);
   line-height: 1.6;
+  background: var(--color-accent-light);
+  color: var(--color-text-main);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-weight: 700;
   line-height: 1.2;
+  color: var(--color-text-main);
 }
 
 /* Grid background utility */
@@ -188,49 +192,50 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-bg-card);
   border-radius: 1.25rem;
   border: 1px solid var(--color-border);
-  color: var(--color-text-main);
+  color: var(--color-accent-light);
 }
 
 .cta, .btn-cta {
   background: var(--color-cta);
-  color: #18181b;
+  color: var(--color-text-main);
   border-radius: 9999px;
   font-weight: 600;
   transition: all 0.2s ease;
 }
+
 .cta:hover, .btn-cta:hover {
   background: var(--color-cta-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(118, 181, 197, 0.3);
 }
 
-/* Only apply green color to CTA links, not all links */
 .cta-link {
   color: var(--color-cta);
   text-decoration: none;
-  transition: color 0.2s;
+  font-weight: 600;
 }
+
 .cta-link:hover {
   color: var(--color-cta-hover);
 }
 
 .icon, .lucide {
-  color: inherit;
+  color: var(--color-text-main);
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-main);
+  background: var(--color-accent-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-bg-card);
+  background: var(--color-bg-main);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-bg-card-alt);
+  background: var(--color-bg-darkest);
 }
