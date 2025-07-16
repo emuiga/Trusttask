@@ -72,7 +72,7 @@ export function Footer() {
               <a href="https://tally.so/r/nrQWVX" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition-colors text-xs sm:text-sm">
                 Join Waitlist
               </a>
-              <a href="https://invited-way-f65.notion.site/TrustTask-Terms-Conditions-2296e97a928f80b7baefc6cd1a96a41f" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition-colors text-xs sm:text-sm">
+              <a href="/terms" className="block text-gray-300 hover:text-white transition-colors text-xs sm:text-sm">
                 Terms of Service
               </a>
             </div>
@@ -92,7 +92,7 @@ export function Footer() {
               >
                 Help Center
               </button>
-              <a href="http://bit.ly/4lmDFtZ" target="_blank" rel="noopener noreferrer" className="block text-gray-300 hover:text-white transition-colors text-xs sm:text-sm">
+              <a href="/privacy" className="block text-gray-300 hover:text-white transition-colors text-xs sm:text-sm">
                 Privacy Policy
               </a>
             </div>

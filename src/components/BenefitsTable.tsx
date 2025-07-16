@@ -84,7 +84,7 @@ export function BenefitsTable() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-[#451aea]/10 text-[#451aea] rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-[#451aea]/20">
+          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-[#4b7aec]/10 text-[#4b7aec] rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-[#451aea]/20">
             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
             Why Choose TrustTask
           </div>
@@ -121,7 +121,7 @@ export function BenefitsTable() {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-[#451aea] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
+                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-[#4b7aec] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                       <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                   </div>

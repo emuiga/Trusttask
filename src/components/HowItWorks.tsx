@@ -48,7 +48,7 @@ export function HowItWorks() {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-[#451aea]/10 text-[#451aea] rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-[#451aea]/20">
+          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-[#4b7aec]/10 text-[#4b7aec] rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-[#451aea]/20">
             <Play className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
             How It Works
           </div>
@@ -73,7 +73,7 @@ export function HowItWorks() {
             >
               {/* Step Number */}
               <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2 z-10">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#451aea] text-white text-base sm:text-lg font-bold rounded-full flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#4b7aec] text-white text-base sm:text-lg font-bold rounded-full flex items-center justify-center shadow-lg">
                   {step.icon}
                 </div>
               </div>
@@ -84,7 +84,7 @@ export function HowItWorks() {
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-[#451aea] font-medium text-xs sm:text-sm">
+                  <p className="text-[#4b7aec] font-medium text-xs sm:text-sm">
                     {step.subtitle}
                   </p>
                 </div>

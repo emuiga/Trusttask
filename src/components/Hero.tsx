@@ -48,10 +48,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight tracking-tight drop-shadow-lg"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-red-500 mb-6 sm:mb-8 leading-tight tracking-tight drop-shadow-lg"
             >
               Turn Your Tasking Accounts
-              <span className="block text-[#76b5c5] font-semibold mt-1 sm:mt-2">
+              <span className="block text-[#eeeee4] font-semibold mt-1 sm:mt-2">
                 Into Passive Income Streams
               </span>
             </motion.h1>
@@ -60,7 +60,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-sm sm:text-base lg:text-lg text-white mb-8 sm:mb-10 lg:mb-12 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md"
+              className="text-sm sm:text-base text-white mb-8 sm:mb-10 lg:mb-12 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md"
             >
               Stop trading time for money. Our team completes every task while you earn weekly payouts. Transform your accounts from active work to passive income.
             </motion.p>

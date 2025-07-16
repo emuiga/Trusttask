@@ -136,7 +136,7 @@ export function Header() {
                     window.open('https://tally.so/r/nrQWVX', '_blank');
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-[#4b7aec] text-white font-bold text-sm py-2.5 sm:py-3 rounded-xl hover:bg-[#451aea] transition-colors duration-200"
+                  className="w-full bg-[#4b7aec] text-white font-bold text-sm py-2.5 sm:py-3 rounded-xl hover:bg-[#4b7aec] transition-colors duration-200"
                 >
                   Get started for free
                 </Button>
