@@ -9,25 +9,21 @@ export function Hero() {
       className="pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 flex items-center justify-center relative overflow-hidden min-h-screen"
       style={{ fontFamily: 'var(--font-sans)' }}
     >
-      {/* Full-screen background image */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
           alt="Person working on tasks and productivity"
           className="w-full h-full object-cover"
         />
-        {/* Darker overlay on left side for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#063970]/95 via-[#063970]/80 to-transparent"></div>
       </div>
 
-      {/* Background Elements */}
       <div className="absolute inset-0 opacity-10 z-10" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23eeeee4' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }} />
       
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 sm:gap-16 lg:gap-20">
-          {/* Left: Text Content overlaid on image */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -48,22 +44,33 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-red-500 mb-6 sm:mb-8 leading-tight tracking-tight drop-shadow-lg"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-yellow-300 mb-6 sm:mb-8 leading-tight tracking-tight drop-shadow-lg"
             >
-              Turn Your Tasking Accounts
+              Effortless Income from Your Tasking Accounts
               <span className="block text-[#eeeee4] font-semibold mt-1 sm:mt-2">
-                Into Passive Income Streams
+                We Handle the Work. You Get the Rewards.
               </span>
             </motion.h1>
             
-            <motion.p 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-sm sm:text-base text-white mb-8 sm:mb-10 lg:mb-12 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md"
+              className="mb-8 sm:mb-10 lg:mb-12 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm text-white/90 font-medium"
             >
-              Stop trading time for money. Our team completes every task while you earn weekly payouts. Transform your accounts from active work to passive income.
-            </motion.p>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#76b5c5] rounded-full mr-1.5 sm:mr-2" />
+                <span>No upfront costs</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#1e81b0] rounded-full mr-1.5 sm:mr-2" />
+                <span>Fully automated</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#abdbe3] rounded-full mr-1.5 sm:mr-2" />
+                <span>Guaranteed payouts</span>
+              </div>
+            </motion.div>
 
             {/* Benefit Icons Section */}
             <motion.div
@@ -112,26 +119,6 @@ export function Hero() {
                 Join the waitlist
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2" />
               </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm text-white/90 font-medium"
-            >
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#76b5c5] rounded-full mr-1.5 sm:mr-2" />
-                <span>No upfront costs</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#1e81b0] rounded-full mr-1.5 sm:mr-2" />
-                <span>Fully automated</span>
-              </div>
-              <div className="flex items-center">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#abdbe3] rounded-full mr-1.5 sm:mr-2" />
-                <span>Guaranteed payouts</span>
-              </div>
             </motion.div>
           </motion.div>
 

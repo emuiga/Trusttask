@@ -30,7 +30,7 @@ const benefits = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
-    benefit: "Built on Trust",
+    benefit: "Built on Confidence",
     description: "Registered company with live support, signed agreements, and proven track record",
     icon: Shield,
     image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
@@ -89,7 +89,7 @@ export function BenefitsTable() {
             Why Choose TrustTask
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">
-            Built for Success
+            Built on Confidence
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
             We&apos;ve engineered every aspect of our system to maximize your earnings while minimizing your effort.
