@@ -2,6 +2,7 @@
 
 import { Check, ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const steps = [
   {
@@ -115,20 +116,34 @@ export function HowItWorks() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-[#451aea] to-[#4b7aec] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">
-              Ready to Transform Your Income?
-            </h3>
-            <p className="mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto text-white/90 text-sm sm:text-base md:text-lg px-4 sm:px-0">
-              Join thousands of users who are already earning passive income with TrustTask.
-            </p>
-            <button 
-              onClick={() => window.open('https://tally.so/r/nrQWVX', '_blank')}
-              className="inline-flex items-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-white text-[#451aea] font-bold rounded-lg sm:rounded-xl transition-all duration-200 text-sm sm:text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
-            >
-              Join the waitlist
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2" />
-            </button>
+          <div className="relative bg-gradient-to-r from-[#451aea] to-[#4b7aec] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-white overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                alt="Background"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#451aea]/70 to-[#4b7aec]/70"></div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative z-10">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">
+                Ready to Transform Your Income?
+              </h3>
+              <p className="mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto text-white/90 text-sm sm:text-base md:text-lg px-4 sm:px-0">
+                Join thousands of users who are already earning passive income with TrustTask.
+              </p>
+              <button 
+                onClick={() => window.open('https://tally.so/r/nrQWVX', '_blank')}
+                className="inline-flex items-center px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-white text-[#451aea] font-bold rounded-lg sm:rounded-xl transition-all duration-200 text-sm sm:text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-105"
+              >
+                Join the waitlist
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1.5 sm:ml-2" />
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

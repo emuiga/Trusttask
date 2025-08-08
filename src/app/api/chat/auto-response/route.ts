@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+
+// In-memory storage for conversations (shared with main chat route)
+const conversations = new Map();
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,9 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify conversation exists
-    const conversation = await prisma.conversation.findUnique({
-      where: { id: conversationId }
-    });
+    const conversation = conversations.get(conversationId);
 
     if (!conversation) {
       return NextResponse.json(
@@ -25,19 +25,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Add automatic response
-    const autoResponse = await prisma.message.create({
-      data: {
-        conversationId,
-        text: "Thanks for your message! Our crew will get back to you soon. We typically respond within several hours.",
-        sender: 'support'
-      }
-    });
+    const autoResponse = {
+      id: `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      conversationId,
+      text: "Thanks for your message! Our crew will get back to you soon. We typically respond within several hours.",
+      sender: 'support',
+      timestamp: new Date().toISOString()
+    };
 
-    // Update conversation timestamp
-    await prisma.conversation.update({
-      where: { id: conversationId },
-      data: { updatedAt: new Date() }
-    });
+    conversation.messages.push(autoResponse);
+    conversation.updatedAt = new Date().toISOString();
+
+    // Store updated conversation
+    conversations.set(conversationId, conversation);
 
     return NextResponse.json({ message: autoResponse });
 

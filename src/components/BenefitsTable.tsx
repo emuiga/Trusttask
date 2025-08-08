@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle, Shield, Clock, BarChart3, CreditCard, Users, Sparkles } from "lucide-react";
+import { Users, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -8,37 +8,37 @@ const benefits = [
   {
     benefit: "Fully Hands-Off",
     description: "Our professional team completes every task for you — no effort required from your side",
-    icon: CheckCircle,
+    icon: "/start-up.png",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     benefit: "Weekly Payouts",
     description: "Receive your earnings consistently every week with automated payment processing",
-    icon: Clock,
+    icon: "/7-days.png",
     image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     benefit: "Live Dashboard",
     description: "Monitor your account activity, task progress, and earnings in real-time",
-    icon: BarChart3,
+    icon: "/dashboard.png",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     benefit: "No Upfront Costs",
     description: "We only succeed when you do — no payments until you receive your first payout",
-    icon: CreditCard,
+    icon: "/price-tag.png",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     benefit: "Built on Confidence",
     description: "Registered company with live support, signed agreements, and proven track record",
-    icon: Shield,
+    icon: "/building.png",
     image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   },
   {
     benefit: "24/7 Support",
     description: "Get help whenever you need it with our dedicated customer support team",
-    icon: Users,
+    icon: "/24-hours-support.png",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
   }
 ];
@@ -103,28 +103,32 @@ export function BenefitsTable() {
           viewport={{ once: true }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20"
         >
-          {benefits.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                className="group"
-              >
-                <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-sm h-full overflow-hidden">
-                  {/* Image */}
-                  <div className="relative h-32 sm:h-40 md:h-48 bg-gray-100">
+          {benefits.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className="group"
+            >
+              <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-sm h-full overflow-hidden">
+                {/* Image */}
+                <div className="relative h-32 sm:h-40 md:h-48 bg-gray-100">
+                  <Image
+                    src={item.image}
+                    alt={item.benefit}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-[#4b7aec] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
                     <Image
-                      src={item.image}
+                      src={item.icon}
                       alt={item.benefit}
-                      fill
-                      className="object-cover"
+                      width={24}
+                      height={24}
+                      className="w-5 h-5 sm:w-6 sm:h-6"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 bg-[#4b7aec] rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">
-                      <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                    </div>
                   </div>
+                </div>
                   
                   {/* Content */}
                   <div className="p-4 sm:p-6 md:p-8">
@@ -137,8 +141,7 @@ export function BenefitsTable() {
                   </div>
                 </div>
               </motion.div>
-            );
-          })}
+          ))}
         </motion.div>
 
         <motion.div

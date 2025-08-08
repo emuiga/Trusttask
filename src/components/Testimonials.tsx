@@ -1,31 +1,43 @@
 "use client";
 
-import { Star, Quote, CheckCircle, Calendar } from "lucide-react";
+import { Quote, CheckCircle, Users } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const testimonials = [
   {
-    name: "Jess",
-    location: "NJ",
-    testimonial: "Rapid on-boarding and consistent earnings.",
+    name: "Sarah Johnson",
+    location: "New Jersey",
+    testimonial: "I have tasking accounts but no time to work on them. TrustTask connected me with reliable taskers who handle everything perfectly. I'm earning $3,200/month passively while focusing on my main job.",
     rating: 5,
-    avatar: "J"
+    avatar: "/pp1.jpg",
+    verified: true,
+    joinDate: "March 2024",
+    role: "Account Owner"
   },
   {
-    name: "David",
-    location: "TX",
-    testimonial: "Seamless setup and strong weekly performance.",
+    name: "Michael Thompson",
+    location: "Texas",
+    testimonial: "Found TrustTask when I needed help with my tasking accounts. The platform is incredibly reliable - my taskers complete everything on time and maintain high quality scores. Perfect passive income stream.",
     rating: 5,
-    avatar: "D"
+    avatar: "/pp2.jpg",
+    verified: true,
+    joinDate: "February 2024",
+    role: "Software Engineer"
   },
   {
-    name: "Maya",
-    location: "FL",
-    testimonial: "Top earner in our initial testing cohort.",
+    name: "Emily Davis",
+    location: "Florida",
+    testimonial: "I manage multiple tasking accounts but was overwhelmed. TrustTask's taskers are professional and consistent. They've helped me scale from 2 to 8 accounts, tripling my monthly income.",
     rating: 5,
-    avatar: "M"
+    avatar: "/pp3.jpg",
+    verified: true,
+    joinDate: "January 2024",
+    role: "Marketing Consultant"
   }
 ];
+
+
 
 export function Testimonials() {
   return (
@@ -38,11 +50,15 @@ export function Testimonials() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-[#451aea]/10 text-[#451aea] rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 border border-[#451aea]/20">
+            <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+            Real Results from Real Users
+          </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">
-            Don&apos;t just take our word for it
+            Why People Choose TrustTask
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0">
-            See what our users are saying about their experience
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+            Join professionals who&apos;ve already transformed their tasking accounts into reliable passive income streams
           </p>
         </motion.div>
 
@@ -70,23 +86,44 @@ export function Testimonials() {
                 {/* Rating */}
                 <div className="flex mb-4 sm:mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-400 fill-current" />
+                    <Image
+                      key={i}
+                      src="/star.png"
+                      alt="Star"
+                      width={20}
+                      height={20}
+                      className="h-4 w-4 sm:h-5 sm:w-5"
+                    />
                   ))}
                 </div>
 
                 {/* Testimonial text */}
-                <p className="mb-6 sm:mb-8 italic leading-relaxed text-gray-700 text-sm sm:text-base">
+                <p className="mb-6 sm:mb-8 leading-relaxed text-gray-700 text-sm sm:text-base">
                   &ldquo;{testimonial.testimonial}&rdquo;
                 </p>
 
                 {/* Author */}
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#451aea] to-[#4b7aec] rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg">
-                    {testimonial.avatar}
-                  </div>
-                  <div className="ml-3 sm:ml-4">
-                    <p className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.name}</p>
-                    <p className="text-gray-600 text-xs sm:text-sm">{testimonial.location}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#451aea]/20">
+                      <Image
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="ml-3 sm:ml-4">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.name}</p>
+                        {testimonial.verified && (
+                          <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" />
+                        )}
+                      </div>
+                      <p className="text-gray-600 text-xs sm:text-sm">{testimonial.role}</p>
+                      <p className="text-gray-500 text-xs">{testimonial.location}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -96,7 +133,7 @@ export function Testimonials() {
 
         {/* Trust indicators */}
         <motion.div 
-          className="text-center"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -105,7 +142,13 @@ export function Testimonials() {
           <div className="inline-flex items-center justify-center space-x-4 sm:space-x-6 md:space-x-12 bg-white/80 backdrop-blur-sm px-4 sm:px-6 md:px-8 py-4 sm:py-6 rounded-xl sm:rounded-2xl border border-white/20 shadow-lg">
             {/* Rating */}
             <div className="flex items-center space-x-2">
-              <Star className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 fill-yellow-500" />
+              <Image
+                src="/star.png"
+                alt="Star"
+                width={20}
+                height={20}
+                className="h-4 w-4 sm:h-5 sm:w-5"
+              />
               <div className="text-left">
                 <div className="text-base sm:text-lg font-semibold text-gray-900">5.0</div>
                 <div className="text-xs text-gray-600">Rating</div>
@@ -117,7 +160,13 @@ export function Testimonials() {
 
             {/* Verified Users */}
             <div className="flex items-center space-x-2">
-              <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />
+              <Image
+                src="/tick-mark.png"
+                alt="Verified"
+                width={20}
+                height={20}
+                className="h-4 w-4 sm:h-5 sm:w-5"
+              />
               <div className="text-left">
                 <div className="text-base sm:text-lg font-semibold text-gray-900">100%</div>
                 <div className="text-xs text-gray-600">Verified</div>
@@ -129,7 +178,13 @@ export function Testimonials() {
 
             {/* Weekly Payouts */}
             <div className="flex items-center space-x-2">
-              <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-[#451aea]" />
+              <Image
+                src="/7-days.png"
+                alt="Weekly"
+                width={20}
+                height={20}
+                className="h-4 w-4 sm:h-5 sm:w-5"
+              />
               <div className="text-left">
                 <div className="text-base sm:text-lg font-semibold text-gray-900">Weekly</div>
                 <div className="text-xs text-gray-600">Payouts</div>
@@ -137,7 +192,9 @@ export function Testimonials() {
             </div>
           </div>
         </motion.div>
+
+
       </div>
     </section>
   );
-} 
+}

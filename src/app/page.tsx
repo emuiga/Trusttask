@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { BenefitsTable } from "@/components/BenefitsTable";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Testimonials } from "@/components/Testimonials";
+import { TrustBadges } from "@/components/TrustBadges";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { LiveChat } from "@/components/LiveChat";
@@ -15,6 +16,7 @@ export default function Home() {
       <BenefitsTable />
       <HowItWorks />
       <Testimonials />
+      <TrustBadges />
       <FAQ />
       <Footer />
       <LiveChat />

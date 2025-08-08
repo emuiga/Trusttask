@@ -42,8 +42,6 @@ export function LiveChat() {
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
-  const [conversationId, setConversationId] = useState<string | null>(null);
-  const [userId] = useState(() => `user_${Math.random().toString(36).substr(2, 9)}`);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Listen for toggle event from footer
@@ -62,81 +60,35 @@ export function LiveChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Poll for new messages when chat is open
-  useEffect(() => {
-    if (!isOpen || !conversationId) return;
 
-    const pollInterval = setInterval(async () => {
-      try {
-        const response = await fetch(`/api/chat?conversationId=${conversationId}`);
-        if (response.ok) {
-          const conversation = await response.json();
-          setMessages(conversation.messages);
-        }
-      } catch (error) {
-        console.error('Error polling for messages:', error);
-      }
-    }, 3000); // Poll every 3 seconds
-
-    return () => clearInterval(pollInterval);
-  }, [isOpen, conversationId]);
 
   const sendMessage = async (text: string) => {
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: text,
-          userId,
-          conversationId
-        })
-      });
+    // Add user message immediately
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: text,
+      sender: 'user',
+      timestamp: new Date().toISOString()
+    };
 
-      if (response.ok) {
-        const data = await response.json();
-        setConversationId(data.conversationId);
-        
-        // Fetch updated conversation
-        const conversationResponse = await fetch(`/api/chat?conversationId=${data.conversationId}`);
-        if (conversationResponse.ok) {
-          const conversation = await conversationResponse.json();
-          setMessages(conversation.messages);
-        }
+    setMessages(prev => [...prev, userMessage]);
 
-        // Show automatic response after a short delay
-        setTimeout(() => {
-          setIsTyping(true);
-          setTimeout(async () => {
-            try {
-              // Send automatic response to database
-              const autoResponse = await fetch('/api/chat/auto-response', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  conversationId: data.conversationId
-                })
-              });
+    // Show typing indicator
+    setIsTyping(true);
 
-              if (autoResponse.ok) {
-                const autoData = await autoResponse.json();
-                setMessages(prev => [...prev, autoData.message]);
-              }
-            } catch (error) {
-              console.error('Error sending auto-response:', error);
-            } finally {
-              setIsTyping(false);
-            }
-          }, 2000);
-        }, 1000);
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
+    // Add automatic response after a short delay
+    setTimeout(() => {
+      setIsTyping(false);
+      
+      const supportMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Thanks for your message! Our support team will get back to you soon. We typically respond within several hours. In the meantime, feel free to check our FAQ section for quick answers to common questions.",
+        sender: 'support',
+        timestamp: new Date().toISOString()
+      };
+
+      setMessages(prev => [...prev, supportMessage]);
+    }, 1500);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -148,15 +100,31 @@ export function LiveChat() {
   };
 
   const handleFaqClick = (question: string) => {
-    // Send FAQ question as user message
-    sendMessage(question);
-    
-    // Show typing indicator and respond with answer
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      // The answer will be sent by support through the admin dashboard
-    }, 1500);
+    // Find the answer for the clicked question
+    const faq = faqQuestions.find(faq => faq.question === question);
+    if (!faq) return;
+
+    // Add user message
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: question,
+      sender: 'user',
+      timestamp: new Date().toISOString()
+    };
+
+    // Add support response
+    const supportMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      text: faq.answer,
+      sender: 'support',
+      timestamp: new Date().toISOString()
+    };
+
+    // Update messages state
+    setMessages(prev => [...prev, userMessage, supportMessage]);
+
+    // Switch to messages tab to show the conversation
+    setActiveTab("messages");
   };
 
   const formatTime = (timestamp: string) => {
@@ -186,7 +154,7 @@ export function LiveChat() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-4 md:bottom-6 md:right-6 md:left-auto md:top-auto md:w-96 md:h-[500px] bg-white rounded-2xl border border-gray-200 z-50 overflow-hidden shadow-xl"
+            className="fixed inset-2 sm:inset-4 md:bottom-6 md:right-6 md:left-auto md:top-auto md:w-96 md:h-[600px] bg-white rounded-2xl border border-gray-200 z-50 overflow-hidden shadow-xl max-h-[95vh]"
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -204,10 +172,17 @@ export function LiveChat() {
                 </div>
               </div>
               <div className="flex space-x-2">
-                
+                <button
+                  onClick={() => setIsMinimized(!isMinimized)}
+                  className="text-[#abdbe3] hover:text-[#eeeee4] transition-colors p-1.5 rounded hover:bg-[#abdbe3]/20"
+                  title={isMinimized ? "Expand" : "Minimize"}
+                >
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isMinimized ? 'rotate-180' : ''}`} />
+                </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-[#abdbe3] hover:text-[#eeeee4] transition-colors p-1"
+                  className="text-[#abdbe3] hover:text-[#eeeee4] transition-colors p-1.5 rounded hover:bg-red-500/20 hover:text-red-300"
+                  title="Close"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -218,7 +193,7 @@ export function LiveChat() {
             <AnimatePresence>
               {!isMinimized && (
                 <motion.div
-                  className="h-[calc(100vh-8rem)] md:h-[420px] flex flex-col"
+                  className="h-[calc(100vh-8rem)] md:h-[520px] flex flex-col"
                   initial={{ height: 0 }}
                   animate={{ height: 'calc(100vh - 8rem)' }}
                   exit={{ height: 0 }}
@@ -274,13 +249,16 @@ export function LiveChat() {
                         <div className="space-y-2 md:space-y-3">
                           <p className="text-xs md:text-sm font-medium text-gray-700">Frequently Asked Questions:</p>
                           {faqQuestions.map((faq, index) => (
-                            <div key={index} className="border border-gray-200 rounded-lg">
+                            <div key={index} className="border border-gray-200 rounded-lg hover:border-[#76b5c5] transition-colors">
                               <button
                                 onClick={() => handleFaqClick(faq.question)}
-                                className="w-full px-3 md:px-4 py-2 md:py-3 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                                className="w-full px-3 md:px-4 py-2 md:py-3 text-left flex justify-between items-center hover:bg-[#76b5c5]/10 transition-colors group"
                               >
-                                <span className="text-xs md:text-sm text-gray-700 pr-2">{faq.question}</span>
-                                <ChevronDown className="h-3 w-3 md:h-4 md:w-4 text-gray-500 flex-shrink-0" />
+                                <span className="text-xs md:text-sm text-gray-700 pr-2 group-hover:text-[#21130d]">{faq.question}</span>
+                                <div className="flex items-center space-x-1">
+                                  <span className="text-xs text-[#76b5c5] font-medium">Click to see answer</span>
+                                  <ChevronDown className="h-3 w-3 md:h-4 md:w-4 text-[#76b5c5] flex-shrink-0" />
+                                </div>
                               </button>
                             </div>
                           ))}
@@ -294,7 +272,13 @@ export function LiveChat() {
                             <div className="text-center text-gray-500 py-8">
                               <MessageSquare className="h-6 w-6 md:h-8 md:w-8 mx-auto mb-2 opacity-50" />
                               <p className="text-xs md:text-sm">No messages yet</p>
-                              <p className="text-xs">Start a conversation to see messages here</p>
+                              <p className="text-xs mb-4">Start a conversation to see messages here</p>
+                              <button
+                                onClick={() => setActiveTab("home")}
+                                className="bg-[#76b5c5] hover:bg-[#abdbe3] text-[#21130d] px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors"
+                              >
+                                Browse FAQ Questions
+                              </button>
                             </div>
                           ) : (
                             <>
@@ -369,6 +353,15 @@ export function LiveChat() {
                               <Send className="h-4 w-4" />
                             </button>
                           </form>
+                          {/* Mobile Close Button */}
+                          <div className="mt-3 md:hidden">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg text-sm font-medium transition-colors"
+                            >
+                              Close Chat
+                            </button>
+                          </div>
                         </div>
                       </>
                     )}

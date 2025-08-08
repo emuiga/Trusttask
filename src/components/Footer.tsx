@@ -26,7 +26,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 sm:space-x-3 mb-6 sm:mb-8">
-              <Image src="/logonobg.png" alt="TrustTask Logo" width={32} height={32} className="h-6 w-6 sm:h-8 sm:w-8" />
+              <Image src="/logonobg.png" alt="TrustTask Logo" width={48} height={48} className="h-8 w-8 sm:h-12 sm:w-12" />
               <span className="text-lg sm:text-xl font-bold">TrustTask</span>
             </div>
             <p className="text-gray-300 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">
