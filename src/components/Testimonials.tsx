@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Johnson McArdle",
     location: "New Jersey",
     testimonial: "I have tasking accounts but no time to work on them. TrustTask connected me with reliable taskers who handle everything perfectly. I'm earning $3,200/month passively while focusing on my main job.",
     rating: 5,
@@ -16,7 +16,7 @@ const testimonials = [
     role: "Account Owner"
   },
   {
-    name: "Michael Thompson",
+    name: "Chloe Thompson",
     location: "Texas",
     testimonial: "Found TrustTask when I needed help with my tasking accounts. The platform is incredibly reliable - my taskers complete everything on time and maintain high quality scores. Perfect passive income stream.",
     rating: 5,
