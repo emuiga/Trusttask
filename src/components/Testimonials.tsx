@@ -6,34 +6,34 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "Johnson McArdle",
-    location: "New Jersey",
-    testimonial: "I have tasking accounts but no time to work on them. TrustTask connected me with reliable taskers who handle everything perfectly. I'm earning $3,200/month passively while focusing on my main job.",
+    name: "Ben T.",
+    location: "Dallas, Texas, USA",
+    testimonial: "I work two jobs and was still falling behind on my credit card bills. I don't have any special tech skills, but TrustTask set everything up for me and now I get an extra paycheck every week without lifting a finger. It's been a huge relief for me and my family.",
     rating: 5,
     avatar: "/pp1.jpg",
     verified: true,
     joinDate: "March 2024",
-    role: "Account Owner"
+    role: "Working Parent"
   },
   {
-    name: "Chloe Thompson",
-    location: "Texas",
-    testimonial: "Found TrustTask when I needed help with my tasking accounts. The platform is incredibly reliable - my taskers complete everything on time and maintain high quality scores. Perfect passive income stream.",
+    name: "Lisa M",
+    location: "Brisbane, Queensland, Australia",
+    testimonial: "I'm not great with computers, so I always assumed online income wasn't for me. TrustTask proved otherwise. They guided me through a simple sign-up, did all the work, and I just see the money arrive weekly. It's honestly the easiest income I've ever made.",
     rating: 5,
     avatar: "/pp2.jpg",
     verified: true,
     joinDate: "February 2024",
-    role: "Software Engineer"
+    role: "Retail Worker"
   },
   {
-    name: "Emily Davis",
-    location: "Florida",
-    testimonial: "I manage multiple tasking accounts but was overwhelmed. TrustTask's taskers are professional and consistent. They've helped me scale from 2 to 8 accounts, tripling my monthly income.",
+    name: "Claire R.",
+    location: "Birmingham, England, UK",
+    testimonial: "I was juggling shifts at the café and part-time retail work, and still had nothing left over at the end of the month. TrustTask took care of everything from account setup to the actual tasks. I've never done anything like this before, but now I'm earning passively and can finally save a little each month.",
     rating: 5,
     avatar: "/pp3.jpg",
     verified: true,
     joinDate: "January 2024",
-    role: "Marketing Consultant"
+    role: "Service Worker"
   }
 ];
 
